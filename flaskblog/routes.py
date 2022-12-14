@@ -26,12 +26,12 @@ posts = [
 @app.route('/')
 @app.route('/home')
 def home():
-    return render_template('home.html', posts=posts)
+    return render_template('home.jinja2', posts=posts)
 
 
 @app.route('/about')
 def about():
-    return render_template('about.html')
+    return render_template('about.jinja2')
 
 
 @app.route('/register', methods=['GET', 'POST'])
@@ -53,7 +53,7 @@ def register():
             f'New account is created for {form.username.data}, You can log in now', 'success')
         return redirect(url_for('home'))
 
-    return render_template('register.html', title='Register', form=form)
+    return render_template('register.jinja2', title='Register', form=form)
 
 
 @app.route('/login', methods=['GET', 'POST'])
@@ -77,7 +77,7 @@ def login():
         else:
             flash('Unsuccessful log in, please check email and password')
 
-    return render_template('login.html', title='Log in', form=form)
+    return render_template('login.jinja2', title='Log in', form=form)
 
 
 @app.route('/logout')
