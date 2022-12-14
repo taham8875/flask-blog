@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+{% block content %}
+  <div class="content-section col-12 col-md-6 col-lg-4">
+    <form action="" method="post">
+      {{form.hidden_tag()}}
+      <fieldset class="from-group">
+        <legend>Log in</legend>
+        <div class='mb-3'>
+          {{form.email.label(class='form-label')}}
+          {% if form.email.errors %}
+          {{form.email(class='form-control')}}
+          <div class='invalid-feedback d-block'>
+            {% for error in form.email.errors %}
+              <span>{{error}}</span>
+            {% endfor %}
+          </div>
+          {% else %}
+          {{form.email(class='form-control')}}
+          {% endif %}
+        </div>
+        <div class='mb-3'>
+          {{form.password.label(class='form-label')}}
+          {% if form.password.errors %}
+          {{form.password(class='form-control')}}
+          <div class='invalid-feedback d-block'>
+            {% for error in form.password.errors %}
+              <span>{{error}}</span>
+            {% endfor %}
+          </div>
+          {% else %}
+          {{form.password(class='form-control')}}
+          {% endif %}
+        </div>
+        <div class='form-check mb-3'>
+          {{form.remember(class='form-check-input')}}
+          {{form.remember.label(class='form-check-label')}}
+        </div>
+        <div class='mb-3'>
+        <a href="#">Forget password?</a>
+        </div>
+      </fieldset>
+      <div class='mb-3'>
+        {{form.submit(class='btn btn-primary')}}
+      </div>
+    </form>
+    <div>
+      <span class='mb-3'>New to Flask blog? <a href="{{url_for('register')}}">create an account</a></span>
+    </div>
+  </div>
+{% endblock content %}

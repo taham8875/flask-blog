@@ -1,0 +1,12 @@
+nav {
+  background-color: #3f51b5;
+}
+
+nav * {
+  color: white!important;
+}
+
+.account-card img {
+  width: 140px;
+  height: 140px;
+}

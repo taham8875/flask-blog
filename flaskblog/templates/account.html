@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+{% block content %}
+  <div class="account border rounded p-3 mb-3">
+    <div class="account-card d-flex align-items-center flex-column flex-sm-row mb-3">
+      <img src="{{ url_for('static', filename = 'profile_pics/' + current_user.profile_picture)}}"
+           class="img-fluid rounded-circle me-sm-4 mb-3 mb-sm-0"
+           alt="profile pic">
+      <div>
+        <h5 class="card-title">{{ current_user.username }}</h5>
+        <p class="card-text">
+          <small class="text-muted">{{ current_user.email }}</small>
+        </p>
+      </div>
+    </div>
+    <form action="" method="post" enctype='multipart/form-data'>
+      {{ form.hidden_tag()}}
+      <fieldset class="from-group">
+        <legend>
+          Account Info
+        </legend>
+        <div class="mb-3">
+          {{ form.username.label(class='form-label')}}
+          {% if form.username.errors %}
+            {{ form.username(class='form-control user-account-update-input')}}
+            <div class='invalid-feedback d-block'>
+              {% for error in form.username.errors %}<span>{{ error }}</span>{% endfor %}
+            </div>
+          {% else %}
+            {{ form.username(class='form-control user-account-update-input')}}
+          {% endif %}
+        </div>
+        <div class="mb-3">
+          {{ form.email.label(class='form-label')}}
+          {% if form.email.errors %}
+            {{ form.email(class='form-control user-account-update-input')}}
+            <div class='invalid-feedback  d-block'>
+              {% for error in form.email.errors %}<span>{{ error }}</span>{% endfor %}
+            </div>
+          {% else %}
+            {{ form.email(class='form-control user-account-update-input')}}
+          {% endif %}
+        </div>
+        <div class="mb-3">
+          {{ form.profile_picture.label(class='form-label')}}
+          {% if form.profile_picture.errors %}
+            {{ form.profile_picture(class='form-control upload-profile-picture')}}
+            <div class='invalid-feedback  d-block'>
+              {% for error in form.profile_picture.errors %}<span>{{ error }}</span>{% endfor %}
+            </div>
+          {% else %}
+            {{ form.profile_picture(class='form-control upload-profile-picture')}}
+          {% endif %}
+        </div>
+      </fieldset>
+      <div>{{ form.submit(class='btn btn-primary mb-3 update-account-submit')}}</div>
+    </form>
+  </div>
+{% endblock content %}
