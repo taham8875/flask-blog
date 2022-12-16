@@ -9,9 +9,9 @@
     <link rel="stylesheet"
           href="{{ url_for('static', filename = 'css/base.css') }}">
     {% if title %}
-      <title>Flask blog - {{ title }}</title>
+      <title>Flask Blog - {{ title }}</title>
     {% else %}
-      <title>Flask blog</title>
+      <title>Flask Blog</title>
     {% endif %}
   </head>
   <body>
@@ -20,14 +20,14 @@
         <a class="navbar-brand text-white" href="#">Flask blog</a>
         <button class="navbar-toggler"
                 type="button"
-                data-toggle="collapse"
-                data-target="#navbarSupportedContent"
+                data-bs-toggle="collapse"
+                data-bs-target="#collapse"
                 aria-controls="navbarSupportedContent"
                 aria-expanded="false"
                 aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <div class="collapse navbar-collapse" id="collapse">
           <div class="d-flex align-center justify-content-between w-100">
             <ul class="navbar-nav mr-auto">
               <li class="nav-item active">
@@ -39,6 +39,9 @@
             </ul>
             {% if current_user.is_authenticated %}
               <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                  <a class="nav-link" href="{{ url_for('new_post') }}">New Post</a>
+                </li>
                 <li class="nav-item active">
                   <a class="nav-link" href="{{ url_for('account') }}">Account</a>
                 </li>
@@ -70,5 +73,7 @@
       {% endblock content %}
     </div>
     <script src="{{ url_for('static', filename = 'js/main.js') }}"></script>
+    <script src="{{ url_for('static', filename = 'js/update_post.js') }}"></script>
+    <script src="{{ url_for('static', filename = 'js/bootstrap.bundle.min.js') }}"></script>
   </body>
 </html>

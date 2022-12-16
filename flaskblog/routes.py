@@ -1,31 +1,20 @@
 import os
 import secrets
+import random
 from PIL import Image
-from flask import render_template, url_for, redirect, flash, request
+from flask import render_template, url_for, redirect, flash, request, abort
 from flaskblog import app
 from flask_login import current_user, login_user, logout_user, login_required
-from flaskblog.forms import RegistrationForm, LoginForm, UpdateAccountForm
+from flaskblog.forms import RegistrationForm, LoginForm, UpdateAccountForm, PostForm
 from flaskblog import bcrypt, db
-from flaskblog.models import User
-posts = [
-    {
-        'author': 'taha',
-        'title': 'First post',
-        'content': 'hello one',
-        'data': 'dec 2022'
-    },
-    {
-        'author': 'mom',
-        'title': 'second post',
-        'content': 'hello two',
-        'data': 'nov 2022'
-    }
-]
+from flaskblog.models import User, Post
 
 
 @app.route('/')
 @app.route('/home')
 def home():
+    posts = Post.query.all()
+    random.shuffle(posts)
     return render_template('home.jinja2', posts=posts)
 
 
@@ -116,3 +105,37 @@ def account():
         form.username.data = current_user.username
         form.email.data = current_user.email
     return render_template('account.jinja2', title='Account', form=form)
+
+
+@app.route('/posts/new', methods=['GET', 'POST'])
+@login_required
+def new_post():
+    form = PostForm()
+    if form.validate_on_submit():
+        post = Post(title=form.title.data,
+                    content=form.content.data, author=current_user)
+        db.session.add(post)
+        db.session.commit()
+        flash('New post has been created', 'success')
+        return redirect(url_for('home'))
+    return render_template('new_post.jinja2', title='New Post', form=form)
+
+
+@app.route('/posts/<int:post_id>')
+@login_required
+def post(post_id):
+    post = Post.query.get_or_404(post_id)
+    return render_template('post.jinja2', title=post.title, post=post)
+
+
+@app.route('/posts/<int:post_id>/update', methods=['GET', 'POST'])
+@login_required
+def update_post(post_id):
+    post = Post.query.get_or_404(post_id)
+    if post.author != current_user:
+        abort(403)
+    else:
+        form = PostForm()
+        form.title.data = post.title
+        form.content.data = post.content
+        return render_template('update_post.jinja2', title='Update Post', form=form)

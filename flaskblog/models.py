@@ -19,7 +19,7 @@ class User(db.Model, UserMixin):
     posts = db.relationship('Post', backref='author', lazy=True)
 
     def __repr__(self) -> str:
-        return f"User({self.username}, {self.email}, {self.image_file})"
+        return f"User({self.username}, {self.email}, {self.profile_picture})"
 
 
 class Post(db.Model, UserMixin):

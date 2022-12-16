@@ -1,8 +1,23 @@
 {% extends "base.jinja2" %}
 {% block content %}
   {% for post in posts %}
-    <h1>{{ post.title }}</h1>
-    <p>{{ post.author }} on {{ post.date }}</p>
-    <p>{{ post.content }}</p>
+    <div class="post border rounded p-3 mb-3">
+      <div class="post-card d-flex align-items-center flex-row  mb-3">
+        <img src="{{ url_for('static', filename = 'profile_pics/' + current_user.profile_picture)}}"
+             class="img-fluid rounded-circle me-4 "
+             alt="profile pic">
+        <div>
+          <div class="card-text">
+            <p class="mb-0">{{ post.author.username }}</p>
+            <small ><a class="text-decoration-none text-muted"
+   href="{{ url_for('post', post_id=post.id) }}">{{ post.date.strftime("%Y-%d-%m, %H:%M") }}</a></small>
+          </div>
+        </div>
+      </div>
+      <h5 class="card-title mb-2">
+        <a class="link-dark" href="{{ url_for('post', post_id=post.id) }}">{{ post.title }}</a>
+      </h5>
+      <p>{{ post.content }}</p>
+    </div>
   {% endfor %}
 {% endblock content %}

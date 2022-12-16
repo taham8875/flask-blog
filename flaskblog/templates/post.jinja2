@@ -1,0 +1,18 @@
+{% extends "base.jinja2" %}
+{% block content %}
+  <div class="post border rounded p-3 mb-3">
+    <div class="post-card d-flex align-items-center flex-row  mb-3">
+      <img src="{{ url_for('static', filename = 'profile_pics/' + current_user.profile_picture)}}"
+           class="img-fluid rounded-circle me-4 "
+           alt="profile pic">
+      <div>
+        <div class="card-text">
+          <p class="mb-0">{{ post.author.username }}</p>
+          <small class="text-muted">{{ post.date.strftime("%Y-%d-%m, %H:%M") }}</small>
+        </div>
+      </div>
+    </div>
+    <h5 class="card-title mb-2">{{ post.title }}</h5>
+    <p>{{ post.content }}</p>
+  </div>
+{% endblock content %}
