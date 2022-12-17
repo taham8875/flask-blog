@@ -16,16 +16,9 @@ login_manager.category = 'info'
 app.config['MAIL_SERVER'] = 'smtp.gmail.com'
 app.config['MAIL_PORT'] = 465
 app.config['MAIL_USE_SSL'] = True
-# app.config['MAIL_PORT'] = 587
-# app.config['MAIL_USE_TLST'] = True
 app.config['MAIL_USERNAME'] = os.environ.get('EMAIL_USER')
 app.config['MAIL_PASSWORD'] = os.environ.get('EMAIL_PASSWORD')
 mail = Mail(app)
 
-print('taha')
-import pprint
-e = os.environ
-pprint.pprint(dict(e), width=1)
-print(os.environ.get('EMAIL_USER'))
 
 from flaskblog import routes
