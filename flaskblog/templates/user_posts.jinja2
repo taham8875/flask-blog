@@ -1,5 +1,6 @@
 {% extends "base.jinja2" %}
 {% block content %}
+  <h3 class="mb-3">Posts by {{ user.username }} ({{ posts.total }})</h3>
   {% for post in posts.items %}
     <div class="post border rounded p-3 mb-3">
       <div class="post-card d-flex align-items-center flex-row  mb-3">
@@ -8,10 +9,9 @@
              alt="profile pic">
         <div>
           <div class="card-text">
-            <p class="mb-0">
-              <a href="{{ url_for('user_posts', username='taha') }}">{{ post.author.username }}</a>
-            </p>
-            <small ><a class="text-muted" href="{{ url_for('post', post_id=post.id) }}">{{ post.date.strftime("%Y-%d-%m, %H:%M") }}</a></small>
+            <p class="mb-0">{{ post.author.username }}</p>
+            <small ><a class="text-decoration-none text-muted"
+   href="{{ url_for('post', post_id=post.id) }}">{{ post.date.strftime("%Y-%d-%m, %H:%M") }}</a></small>
           </div>
         </div>
       </div>
