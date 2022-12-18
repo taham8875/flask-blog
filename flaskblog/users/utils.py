@@ -4,6 +4,7 @@ from PIL import Image
 from flask import url_for, current_app
 from flaskblog import mail
 from flask_mail import Message
+from flaskblog import myconfig
 
 
 def set_profile_picture(profile_picture):
@@ -21,7 +22,7 @@ def set_profile_picture(profile_picture):
 def send_reset_password_email(user):
     token = user.get_reset_token()
     message = Message('Flask Blog Paswword Reset',
-                      sender=os.environ.get('EMAIL_USER'), recipients=[user.email])
+                      sender=myconfig.EMAIL_USER, recipients=[user.email])
     message.body = f'''
 To reset your password, visit the following link :
 {url_for('users.reset_password', token=token, _external = True)}
