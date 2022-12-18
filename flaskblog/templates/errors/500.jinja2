@@ -1,0 +1,13 @@
+{% extends "base.jinja2" %}
+{% block content %}
+    <div class="text-center border rounded p-3">
+        <h3 class="mb-5">500 &#183; Not Found</h3>
+        <img class="mb-5 img-fluid"
+             src="{{ url_for('static', filename='500.jpg' )}}"
+             alt=""
+             srcset="">
+        <p class="fs-4">
+            The server encountered an internal error or misconfiguration and was unable to complete your request.
+        </p>
+    </div>
+{% endblock content %}

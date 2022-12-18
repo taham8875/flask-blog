@@ -1,0 +1,11 @@
+{% extends "base.jinja2" %}
+{% block content %}
+    <div class="text-center border rounded p-3">
+        <h3 class="mb-5">403 &#183; Access denied</h3>
+        <img class="mb-5 img-fluid"
+             src="{{ url_for('static', filename='403.jpg' )}}"
+             alt=""
+             srcset="">
+        <p class="fs-4">You don't have the permission to access this page.</p>
+    </div>
+{% endblock content %}
