@@ -1,5 +1,5 @@
 import os
-import myconfig
+import flaskblog.myconfig as myconfig
 
 
 class Config:
@@ -8,5 +8,5 @@ class Config:
     MAIL_SERVER = 'smtp.gmail.com'
     MAIL_PORT = 465
     MAIL_USE_SSL = True
-    MAIL_USERNAME = myconfig.MAIL_USERNAME
-    MAIL_PASSWORD = myconfig.MAIL_PASSWORD
+    MAIL_USERNAME = myconfig.EMAIL_USER
+    MAIL_PASSWORD = myconfig.EMAIL_PASSWORD
