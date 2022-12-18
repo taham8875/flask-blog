@@ -1,9 +1,9 @@
 from flask_wtf import FlaskForm
 from flask_wtf.file import FileField, FileAllowed
-from wtforms import StringField, PasswordField, BooleanField, SubmitField, TextAreaField
+from wtforms import StringField, PasswordField, BooleanField, SubmitField
 from wtforms.validators import DataRequired, Length, Email, EqualTo, ValidationError
 from flaskblog.custom_validators import FileSizeLimit
-from flaskblog.models import User, Post
+from flaskblog.models import User
 from flask_login import current_user
 
 
@@ -57,12 +57,6 @@ class UpdateAccountForm(FlaskForm):
             if user:
                 raise ValidationError(
                     'This email already exists, login with this email or choose another one')
-
-
-class PostForm(FlaskForm):
-    title = StringField('Title', validators=[DataRequired()])
-    content = TextAreaField('Content', validators=[DataRequired()])
-    submit = SubmitField('Post')
 
 
 class RequestResetForm(FlaskForm):

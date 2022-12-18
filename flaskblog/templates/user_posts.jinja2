@@ -11,12 +11,12 @@
           <div class="card-text">
             <p class="mb-0">{{ post.author.username }}</p>
             <small ><a class="text-decoration-none text-muted"
-   href="{{ url_for('post', post_id=post.id) }}">{{ post.date.strftime("%Y-%d-%m, %H:%M") }}</a></small>
+   href="{{ url_for('posts.post', post_id=post.id) }}">{{ post.date.strftime("%Y-%d-%m, %H:%M") }}</a></small>
           </div>
         </div>
       </div>
       <h5 class="card-title mb-2">
-        <a class="link-dark" href="{{ url_for('post', post_id=post.id) }}">{{ post.title }}</a>
+        <a class="link-dark" href="{{ url_for('posts.post', post_id=post.id) }}">{{ post.title }}</a>
       </h5>
       <p>{{ post.content }}</p>
     </div>
@@ -26,10 +26,10 @@
       {% if page_number %}
         {% if page_number == posts.page %}
           <a class="btn btn-primary"
-             href="{{ url_for('home', page=page_number) }}">{{ page_number }}</a>
+             href="{{ url_for('main.home', page=page_number) }}">{{ page_number }}</a>
         {% else %}
           <a class="btn btn-outline-primary"
-             href="{{ url_for('home', page=page_number) }}">{{ page_number }}</a>
+             href="{{ url_for('main.home', page=page_number) }}">{{ page_number }}</a>
         {% endif %}
       {% else %}
         ...

@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="{{ url_for('static', filename = 'favicon.png')}}" />
     <link rel="stylesheet"
           href="{{ url_for('static', filename = 'css/bootstrap.min.css') }}">
     <link rel="stylesheet"
@@ -31,31 +32,31 @@
           <div class="d-flex align-center justify-content-between w-100">
             <ul class="navbar-nav mr-auto">
               <li class="nav-item active">
-                <a class="nav-link" href="{{ url_for('home') }}">Home</a>
+                <a class="nav-link" href="{{ url_for('main.home') }}">Home</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="{{ url_for('about') }}">About</a>
+                <a class="nav-link" href="{{ url_for('main.about') }}">About</a>
               </li>
             </ul>
             {% if current_user.is_authenticated %}
               <ul class="navbar-nav mr-auto">
                 <li class="nav-item active">
-                  <a class="nav-link" href="{{ url_for('new_post') }}">New Post</a>
+                  <a class="nav-link" href="{{ url_for('posts.new_post') }}">New Post</a>
                 </li>
                 <li class="nav-item active">
-                  <a class="nav-link" href="{{ url_for('account') }}">Account</a>
+                  <a class="nav-link" href="{{ url_for('users.account') }}">Account</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="{{ url_for('logout') }}">Log out</a>
+                  <a class="nav-link" href="{{ url_for('users.logout') }}">Log out</a>
                 </li>
               </ul>
             {% else %}
               <ul class="navbar-nav mr-auto">
                 <li class="nav-item active">
-                  <a class="nav-link" href="{{ url_for('register') }}">Register</a>
+                  <a class="nav-link" href="{{ url_for('users.register') }}">Register</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="{{ url_for('login') }}">Log in</a>
+                  <a class="nav-link" href="{{ url_for('users.login') }}">Log in</a>
                 </li>
               </ul>
             {% endif %}
