@@ -1,7 +1,4 @@
-import os
-import secrets
-from PIL import Image
-from flask import Blueprint, render_template, url_for, redirect, flash, request, abort
+from flask import Blueprint, render_template, url_for, redirect, flash, request
 from flask_login import current_user, login_user, logout_user, login_required
 from flaskblog.users.forms import RegistrationForm, LoginForm, UpdateAccountForm, RequestResetForm, ResetPasswordForm
 from flaskblog.users.utils import send_reset_password_email, set_profile_picture
@@ -28,7 +25,7 @@ def register():
         db.session.commit()
         flash(
             f'New account is created for {form.username.data}, You can log in now', 'success')
-        return redirect(url_for('users.login'))
+        return redirect(url_for('main.home'))
 
     return render_template('register.jinja2', title='Register', form=form)
 
