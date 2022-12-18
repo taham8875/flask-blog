@@ -12,7 +12,7 @@ To test and use my this blog : http://tahaahmed.pythonanywhere.com/
 
 # Demo
 
-<video src="README/video.mp4"></video>
+https://user-images.githubusercontent.com/92264237/208316834-2a773ca0-913c-4fda-af88-8dec4ee2dee4.mp4
 
 # Features
 
@@ -29,7 +29,7 @@ more features will ba added gradually
 # Acknowledgement
 
 
-<img src="README/corey.jpg" style="max-width:100%; width:15%;border-radius:100%;text-align:center" alt="" srcset="">
+<img src="README/corey.jpg" style="max-width:100%; width:12%;border-radius:100%;text-align:center" alt="" srcset="">
 
 
 
